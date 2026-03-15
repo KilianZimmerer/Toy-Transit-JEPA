@@ -1,2 +1,2 @@
 # Transit-JEPA
-Towards a World Model for Complex System Dynamics of Transit-Networks.
+Towards an Action-Conditioned World Model of Transit Network Dynamics.
