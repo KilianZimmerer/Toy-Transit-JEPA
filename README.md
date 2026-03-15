@@ -1,2 +1,2 @@
-# Kinetic-JEPA
-A Latent World Model for Dynamical Systems
+# Transit-JEPA
+Towards a World Model for Complex System Dynamics of Transit-Networks.
