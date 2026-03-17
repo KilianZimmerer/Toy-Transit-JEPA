@@ -267,7 +267,7 @@ def render_combined_frame(state, step, num_cells, history, id_maps, num_steps,
     # Top row: track (full height of top section) + space-time (shorter)
     # Bottom row: anomaly line chart spanning full width
     gs = fig.add_gridspec(nrows=10, ncols=2, width_ratios=[1.4, 1],
-                          hspace=0.6, wspace=0.3)
+                          hspace=0.6, wspace=0.05)
     ax_track = fig.add_subplot(gs[0:6, 0])         # top-left, full height
     ax_st = fig.add_subplot(gs[1:5, 1])             # top-right, centered
     ax_anom = fig.add_subplot(gs[7:10, :])           # bottom, full width
@@ -283,7 +283,7 @@ def render_combined_frame(state, step, num_cells, history, id_maps, num_steps,
                               transform=fig.transFigure, color="#BDBDBD",
                               linewidth=0.8, zorder=10))
 
-    fig.subplots_adjust(left=0.06, right=0.96, top=0.96, bottom=0.06)
+    fig.subplots_adjust(left=0.06, right=0.82, top=0.96, bottom=0.06)
     buf = io.BytesIO()
     fig.savefig(buf, format="png", dpi=100, bbox_inches="tight", facecolor="#F5F5F0")
     plt.close(fig)
