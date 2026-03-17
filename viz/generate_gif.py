@@ -195,7 +195,7 @@ def _render_track(ax, state, step, num_cells, id_map=None, stall_cell=None):
         r_icon = radius + 0.32
         ix, iy = r_icon * np.cos(angle), r_icon * np.sin(angle)
         ax.text(ix, iy, "⚠", ha="center", va="center",
-                fontsize=14, color="#E65100", zorder=10)
+                fontsize=22, color="#E65100", zorder=10)
 
     ax.text(0, -0.12, "circular track", ha="center", va="center",
             fontsize=7, color="#90A4AE", fontfamily="sans-serif")
@@ -264,13 +264,17 @@ def render_combined_frame(state, step, num_cells, history, id_maps, num_steps,
     fig = plt.figure(figsize=(10, 7))
     fig.patch.set_facecolor("#F5F5F0")
 
-    # Top row: track (full height of top section) + space-time (shorter)
-    # Bottom row: anomaly line chart spanning full width
-    gs = fig.add_gridspec(nrows=10, ncols=2, width_ratios=[1.4, 1],
-                          hspace=0.6, wspace=0.05)
-    ax_track = fig.add_subplot(gs[0:6, 0])         # top-left, full height
-    ax_st = fig.add_subplot(gs[1:5, 1])             # top-right, centered
-    ax_anom = fig.add_subplot(gs[7:10, :])           # bottom, full width
+    # Top gridspec: track + space-time (with right margin for space-time)
+    gs_top = fig.add_gridspec(nrows=6, ncols=2, width_ratios=[1.4, 1],
+                              hspace=0.6, wspace=0.05,
+                              left=0.06, right=0.82, top=0.96, bottom=0.40)
+    ax_track = fig.add_subplot(gs_top[:, 0])
+    ax_st = fig.add_subplot(gs_top[1:5, 1])
+
+    # Bottom gridspec: anomaly chart spanning full width
+    gs_bot = fig.add_gridspec(nrows=1, ncols=1,
+                              left=0.06, right=0.96, top=0.32, bottom=0.06)
+    ax_anom = fig.add_subplot(gs_bot[0, 0])
 
     _render_track(ax_track, state, step, num_cells, id_map=id_maps[step],
                   stall_cell=active_stall_cell)
@@ -282,8 +286,6 @@ def render_combined_frame(state, step, num_cells, history, id_maps, num_steps,
     fig.add_artist(plt.Line2D([0.05, 0.95], [0.365, 0.365],
                               transform=fig.transFigure, color="#BDBDBD",
                               linewidth=0.8, zorder=10))
-
-    fig.subplots_adjust(left=0.06, right=0.82, top=0.96, bottom=0.06)
     buf = io.BytesIO()
     fig.savefig(buf, format="png", dpi=100, bbox_inches="tight", facecolor="#F5F5F0")
     plt.close(fig)
