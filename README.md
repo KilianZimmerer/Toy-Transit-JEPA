@@ -10,9 +10,9 @@ A minimal PyTorch proof-of-concept: a **Joint-Embedding Predictive Architecture 
 
 Trains move clockwise on a circular track. A context encoder $E_\theta$ maps each state to a latent vector, and a predictor $P_\psi$ forecasts the next latent state from the current one. A target encoder $E_\phi$ (EMA copy of $E_\theta$) provides the learning signal. The model is trained to minimize prediction error in latent space — when a train stalls, this error spikes.
 
-$s_t = E_\theta(x_t), \quad \hat{s}_{t+1} = P_\psi(s_t), \quad s_{t+1}^{\text{target}} = E_\phi(x_{t+1})$
+$s_t = E_\theta(x_t), \quad \hat{s}\_{t+1} = P_\psi(s_t), \quad s\_{t+1}^{\text{target}} = E_\phi(x\_{t+1})$
 
-$\mathcal{L} = \| \hat{s}_{t+1} - s_{t+1}^{\text{target}} \|_2^2, \quad \phi \leftarrow \tau \phi + (1 - \tau)\theta \quad (\tau = 0.99)$
+$$\mathcal{L} = \| \hat{s}\_{t+1} - s\_{t+1}^{\text{target}} \|_2^2, \quad \phi \leftarrow \tau \phi + (1 - \tau)\theta \quad (\tau = 0.99)$$
 
 ## Anomaly Detection
 
