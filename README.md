@@ -42,7 +42,7 @@ Update the target encoder via exponential moving average:
 
 $$\phi \leftarrow \tau \phi + (1 - \tau)\theta \quad (\tau = 0.99)$$
 
-When a train stalls, the prediction error spikes — longer stalls cause more trains to pile up, producing sustained elevated error.
+When a train stalls, the prediction error spikes. Longer stalls cause more trains to pile up, producing sustained elevated error.
 
 ## Anomaly Detection
 
