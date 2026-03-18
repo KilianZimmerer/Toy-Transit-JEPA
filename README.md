@@ -6,7 +6,7 @@ A minimal PyTorch proof-of-concept: a **Joint-Embedding Predictive Architecture 
   <img src="viz/circular_track.gif" width="600" alt="Circular track simulation"/>
 </p>
 
-Trains move clockwise on a circular track. A context encoder $E_\theta$ maps each state to a latent vector, a predictor $P_\psi$ forecasts the next latent state, and a target encoder $E_\phi$ (EMA copy of $E_\theta$) provides the learning signal.
+Trains move clockwise on a circular track. A context encoder $E_\theta$ maps each state to a latent vector, a predictor $P_\psi$ forecasts the next latent state, and a target encoder $E_\phi$ (EMA copy of $E_\theta$) provides the learning signal. The latent distance is then calculated as the squared prediction error in latent space.
 
 ## Contents
 
