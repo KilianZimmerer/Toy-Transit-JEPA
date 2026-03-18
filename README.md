@@ -2,13 +2,11 @@
 
 A minimal PyTorch proof-of-concept: a **Joint-Embedding Predictive Architecture (JEPA)** that learns transit dynamics in latent space and detects anomalies via latent distance.
 
-Trains move clockwise on a circular track. A context encoder $E_\theta$ maps each state to a latent vector, a predictor $P_\psi$ forecasts the next latent state, and a target encoder $E_\phi$ (EMA copy of $E_\theta$) provides the learning signal.
-
-The latent distance can then be used to detect perturbations as shown below.
-
 <p align="center">
   <img src="viz/circular_track.gif" width="600" alt="Circular track simulation"/>
 </p>
+
+Trains move clockwise on a circular track. A context encoder $E_\theta$ maps each state to a latent vector, a predictor $P_\psi$ forecasts the next latent state, and a target encoder $E_\phi$ (EMA copy of $E_\theta$) provides the learning signal.
 
 ## Contents
 
@@ -61,7 +59,7 @@ If scaled, a Transit-JEPA can be adapted for:
 * **Real-Time Simulations:** Fast "what-if" scenarios via latent-space arithmetic instead of Monte Carlo rollouts.
 * **Anomaly Detection:** Latent distance spikes flag unexpected behavior in real time.
 * **Congestion Forecasting:** Unroll the predictor $k$ steps ahead to anticipate bottlenecks before they form.
-* **Safety Auditing:** Cluster historical latent vectors to map the safe operating envelope and warn when live states drift toward high-risk regions.
+* **Safety Auditing:** Cluster historical states to map the safe operating space and warn when live states drift toward high-risk regions.
 * **Disruption Recovery:** Search latent space for rescheduling options that minimize global delay.
 
 ## Structure
